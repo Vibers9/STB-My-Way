@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>STB My Way</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+   <style>
+        body { background-color: white }
+        form  { font-size: 20px;}
+        h1  { font-size: 150px;}
+        h1 {color : green;}
+        h2 {font : times;}
+        h2 {color : green;}
+        h3 {background-color : orange};
+    </style>
+ </head>
+<body>
+  <nav class="navbar -top bg-body-tertiary">
+  <div class="container">
+    
+    <a class="navbar-brand" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Logo_STB_Bucuresti.svg/1600px-Logo_STB_Bucuresti.svg.png" width="100" height="50"></a>
+
+      
+    <button type="button" class="btn btn-outline-secondary btn-sm" id="station_toggle" onclick="toggleWay()">BUS TO AIRPORT</button>
+   
+   <script>
+    
+      function toggleWay() {
+        if (document.getElementById('station_toggle').innerHTML == "BUS TO AIRPORT"){
+          document.getElementById('station_toggle').innerHTML = "BUS TO CENTER";
+          document.getElementById("center").disabled = true;
+          document.getElementById("airport").disabled = false;
+        
+          MyFunction();
+        }
+        else {
+          document.getElementById('station_toggle').innerHTML = "BUS TO AIRPORT";
+          document.getElementById("airport").disabled = true;
+          document.getElementById("center").disabled = false;
+          
+          MyFunction();
+        };
+      };
+    </script>
+    <form>
+        <select id="MySelect" name="station" onchange="setInterval(MyFunction,300)">
+            <option value="airport" id="airport" >AIRPORT OTP</option>
+            <option value="mall" id="mall">CITY MALL</option>
+            <option value="park" id="park">CAROL PARK</option>
+            <option value="government" id="government">GOVERNMENT</option>
+            <option value="hotel" id="hotel">HOTEL DISTRICT</option>
+            <option value="center" id="center">CITY CENTER</option>
+            <option value="default" selected="">BUS STATION</option>
+        </select>
+    </form>
+ 
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">How to use the STB My Way app</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ol>
+          <li> Toggle the destination (BUS TO AIRPORT, BUS TO CENTER)</li>
+          <li> Select a BUS STATION where you'll hop on</li>
+          <li>Check your ETA (estimated time of arrival) in ETA IN STATION and ETA TO DESTINATION tabs</li>
+          </ol>
+        <ul>
+          <li>For preparing your travel beforehand you can simulate the arrival in bus station at different hours to see when it's best to take the bus </li>
+          </ul>
+          <h7>BUS SCHEDULE</h7>
+        </ol>
+        <p>Airport OTP: 06:00 - 20:00 <p></p>
+        <p>Shopping City : 06:15 - 20:15</p>
+        <p>National Park : 06:25-20:25</p>
+        <p>Government District : 06:30-20:30</p>
+        <p>Hotel District : 06:35-20:35</p>
+        <p>City Center : 06:45-20:45</p>
+      </div>
+    </div>
+</div></nav>
+
+
+
+
+  
+
+    <ul class="nav nav-tabs justify-content-center mt-3">
+
+      <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" aria-current="page" href="#Tab1">ETA IN STATION</a></li>
+    
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" id="destination button" href="#Tab2">ETA TO AIRPORT</a></li>
+      
+    </ul>
+    
+
+
+
+
+    <div class="tab-content">
+
+      <div class="tab-pane in active" id="Tab1">
+        
+        
+        <div class="d-flex justify-content-center">
+    
+              <h1 id="minutes" ></h1>
+         </div>
+        
+         <div class="d-flex justify-content-center">
+              <h4 id="message"></h4>
+                
+                <script>
+                  document.getElementById("message").innerHTML = 'minutes until your bus arrives';
+                
+                 </script>
+        
+              
+            </div>
+         
+      
+      
+      </div>
+    
+      <div class="tab-pane" id="Tab2">
+        
+        
+        
+        <div class="d-flex justify-content-center">
+        
+              <h1 id="minits" ></h1>
+        
+        </div>
+        
+        <div class="d-flex justify-content-center">
+              <h4 id="mesage"></h4>
+                
+                <script>
+                  document.getElementById("mesage").innerHTML = 'minutes until your destination';
+                
+                 </script>
+        
+              
+
+        </div>
+        
+      </div>
+  
+    </div>
+
+</div>
+
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      
+    </div>
+    <div class="col">
+        
+      <div class="container mt-3">
+        <label for="timeInput" class="form-label">Check ahead of time for your route</label>
+        <input type="time" id="timeInput" class="form-control">
+        
+        <button class="btn light" onclick="resetTime()">Reset</button>
+ </div>
+  </div>
+  <div class="col">
+  </div>
+</div>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      
+    </div>
+    <div class="col">
+        
+   <h3 id="weather"><p></p></h3>
+  </div>
+  <div class="col">
+  </div>
+</div>
+
+
+
+
+   <script>
+    //FREE VERSION HAS ONLY 100 CALLS PER MONTH. The access key must be changed when it expires from another free new account. (scope: just free university project)
+        fetch(`http://api.weatherstack.com/current?access_key=ba051938e3e1553c3d52e81f911101d1&query=Bucharest`)
+            .then(response => response.json())
+            .then(data => {
+               const weatherInfo = `<p>Bucharest now: ${data.current.temperature}°C</p>`
+                document.getElementById('weather').innerHTML = weatherInfo;
+           }
+           )
+           .catch(error => {
+               console.error('Error fetching weather data:', error);
+               document.getElementById('weather').innerHTML = "<p>Error fetching weather data. Please try again later.</p>";
+          });
+
+
+  //initialising the minute display with default values (pre-option selection)
+        document.getElementById("minutes").innerHTML = `few`;
+        document.getElementById("minits").innerHTML = `few`;
+        
+        //took
+        // const jsonData = {
+   // "airport" : ["06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","20:00"],
+  //  "mall" : ["06:15","07:15","08:15","09:15","10:15","11:15","12:15","13:15","14:15","15:15","16:15"],
+  //  "park" : ["06:25","07:25","08:25","09:25","10:25","11:25","12:25","13:25","14:25","15:25","16:25"],
+  //  "government" : ["06:30","07:30","08:30","09:30","10:30","11:30","12:30","13:30","14:30","15:30","16:30"],
+  //  "center" : ["06:35","07:35","08:35","09:35","10:35","11:35","12:35","13:35","14:35","15:35","16:35"],
+  //  "end" : ["06:45","07:45","08:45","09:45","10:45","11:45","12:45","13:45","14:45","15:45","16:45"]
+  //   };
+  
+
+
+// URL of the API endpoint to fetch data for Bus Schedule
+const url1 = 'http://localhost:3000/data1';
+
+var jsonData = {};
+// Step 1: Make a fetch request
+fetch(url1)
+  .then(response => {
+    // Check if the response is ok (status code 200-299)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    // Step 2: Parse the response as JSON
+    return response.json();
+  })
+  .then(data1 => {
+    // Step 3: Use the JSON data in your program
+    console.log('Fetched Data:', data1)
+    jsonData = data1;
+  })
+  .catch(error => {
+    // Handle any errors that occur during the fetch operation
+    console.error('There was a problem with the fetch operation:', error);
+  });
+
+
+  const url2 = 'http://localhost:4000/data2';
+
+  var busPing = {};
+  fetch(url2)
+  .then(response => {
+    // Check if the response is ok (status code 200-299)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    // Step 2: Parse the response as JSON
+    return response.json();
+  })
+  .then(data2 => {
+    // Step 3: Use the JSON data in your program
+    console.log('Fetched Data:', data2)
+    busPing = data2;
+  })
+  .catch(error => {
+    // Handle any errors that occur during the fetch operation
+    console.error('There was a problem with the fetch operation:', error);
+  });
+//busPing system - to improve and move in a file
+   
+
+  // initialisation of time as a global variable
+
+
+       //   function to calculate current time. either by system time or custom selection value
+
+          function getTime() {
+           
+            if (document.getElementById("timeInput").value) {
+                timenow = document.getElementById("timeInput").value;
+        }}
+
+        //function for the reset button, clears the imput and sets default time
+        function resetTime() {
+            
+            //can replace with getTime
+            document.getElementById("timeInput").value = null;  // Clear input
+            //MyFunction is called to refresh the calculations
+            MyFunction();
+            
+        }
+
+     
+     function formatTime(number) {
+return number < 10 ? '0' + number : number;
+                };
+
+      function convertToHHmm(minutes) {
+    var hh = Math.floor(minutes / 60);
+        hh = formatTime(hh);
+    var mm = minutes % 60;
+       mm = formatTime(mm);
+    return `${hh}:${mm}`;};
+    
+
+  function convertInMinutes (string) {
+    return parseInt(string.substring(0,2))*60 + parseInt(string.substring(3,5))};
+      
+    var timenow = "";
+
+    document.getElementById("airport").disabled = true;
+    
+ 
+        function MyFunction() {
+
+          var now = new Date();
+  var hours = formatTime(now.getHours());
+  var minutes = formatTime(now.getMinutes());
+  timenow = `${hours}:${minutes}`
+  getTime();
+
+          if (document.getElementById('station_toggle').innerHTML == "BUS TO AIRPORT") {
+            selectedValue = `${document.getElementById("MySelect").value}-airport`;
+           document.getElementById("destination button").innerHTML = `ETA TO AIRPORT`;
+    
+          } else {
+            selectedValue = `${document.getElementById("MySelect").value}-center`;
+        document.getElementById("destination button").innerHTML = `ETA TO CENTER`;
+          }
+
+
+          // time handling
+
+         
+
+          //deprecated time
+          
+
+        // earliest pass
+
+  var delay = busPing[selectedValue];
+        selectedAttribute = jsonData[selectedValue];
+        var earliestPass = null;
+let busArrivalTime = 0;
+         // top number THINK IF RIGHT
+         for (index = 0; index < selectedAttribute.length; index++) {
+                
+          if ((timenow >= selectedAttribute[index]))
+                {continue}
+                else {
+
+                    
+                    earliestPass = selectedAttribute[index];
+                    busArrivalTime = convertInMinutes(earliestPass)-convertInMinutes(timenow)+convertInMinutes(delay);
+             
+                    break;}
+            };
+
+        //minutar tab 1
+            
+              //in the morning time starts counting down 60 minutes ahead 
+            if ( (60 <  (convertInMinutes(selectedAttribute[0])-convertInMinutes(timenow)+convertInMinutes(delay))) 
+            
+            //condition that ints morning
+            && (timenow <= selectedAttribute[0]) 
+            
+            || 
+            
+            //show tomorrow also if the bus is after schedule
+            ((timenow >= selectedAttribute[selectedAttribute.length-1]) )) {
+              document.getElementById("minutes").innerHTML = `tomorrow`;
+              document.getElementById("message").innerHTML = `at ${selectedAttribute[0]} is your first bus`;
+
+            } else {
+
+              document.getElementById("minutes").innerHTML = `${busArrivalTime}`;
+              document.getElementById("message").innerHTML = `minutes until your bus arrives`;
+
+            };
+
+        //minute display tab 2
+
+        
+        
+            if (document.getElementById('station_toggle').innerHTML == "BUS TO AIRPORT") {
+
+          
+             
+            let timeOffset = convertInMinutes(jsonData['airport-airport'][index])+convertInMinutes(delay);
+           let  timeString = `${convertToHHmm(timeOffset)}`;
+                    document.getElementById("minits").innerHTML = `${timeString}`;
+                    document.getElementById("mesage").innerHTML = `arrival time at your destination`;
+                  }
+
+                   //index+1 problem??????????? + 2 problem
+                  else {let timeOffset = convertInMinutes(jsonData['center-center'][index])+convertInMinutes(delay);
+               let      timeString = `${(convertToHHmm(timeOffset))}`;
+                    document.getElementById("minits").innerHTML = `${timeString}`;
+                    document.getElementById("mesage").innerHTML = `arrival time at your destination`;
+                };
+              
+       
+        
+
+       // bottom bar 
+      // if ((timenow <= selectedAttribute[selectedAttribute.length-1]) && (convertInMinutes(timenow-60) >= convertInMinutes(selectedAttribute[0]))) {
+      //    document.getElementById("message").innerHTML = `minutes until your bus arrives`;
+     //     document.getElementById("mesage").innerHTML = 'arrival time at your destination';
+     //   } else {
+     //             document.getElementById("message").innerHTML = `at ${selectedAttribute[0]} is your first bus`;
+     //            document.getElementById("mesage").innerHTML = `arrival time at your destination`;
+              
+                 
+     //  }
+      ;}
+        
+</script>
+  
+
+
+</div></div></body></html>
