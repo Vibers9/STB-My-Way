@@ -384,11 +384,11 @@ let busArrivalTime = 0;
         //minute display tab 2
 
         
-        
+        if(timenow >= selectedAttribute[selectedAttribute.length-1]) {index = 0}
+            
             if (document.getElementById('station_toggle').innerHTML == "BUS TO AIRPORT") {
 
-          
-             
+               
             let timeOffset = convertInMinutes(jsonData['airport-airport'][index])+convertInMinutes(delay);
            let  timeString = `${convertToHHmm(timeOffset)}`;
                     document.getElementById("minits").innerHTML = `${timeString}`;
