@@ -29,19 +29,31 @@
    
    <script>
     
+    //toggle heading button action
       function toggleWay() {
+
+        //changes the name of the button
+
+        // disables the possibile choice to be in the station one is heading to 
+
         if (document.getElementById('station_toggle').innerHTML == "BUS TO AIRPORT"){
           document.getElementById('station_toggle').innerHTML = "BUS TO CENTER";
+
+          
           document.getElementById("center").disabled = true;
           document.getElementById("airport").disabled = false;
         
+           //calling MyFunction for remakiing the clock calculation upon heading change
+       
           MyFunction();
         }
         else {
+        
           document.getElementById('station_toggle').innerHTML = "BUS TO AIRPORT";
           document.getElementById("airport").disabled = true;
           document.getElementById("center").disabled = false;
           
+          //calling MyFunction for remakiing the clock calculation upon heading change
           MyFunction();
         };
       };
@@ -211,7 +223,7 @@
         document.getElementById("minutes").innerHTML = `few`;
         document.getElementById("minits").innerHTML = `few`;
         
-        //took
+        //deprecated
         // const jsonData = {
    // "airport" : ["06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","20:00"],
   //  "mall" : ["06:15","07:15","08:15","09:15","10:15","11:15","12:15","13:15","14:15","15:15","16:15"],
@@ -293,11 +305,12 @@ fetch(url1)
             
         }
 
-     
+     //function to pad with '0' time strings with single digit hour/minutes to maintain 'hh:mm' shape
      function formatTime(number) {
 return number < 10 ? '0' + number : number;
                 };
 
+      //function to convert minutes into 'hh:mm' string for ETA destination display
       function convertToHHmm(minutes) {
     var hh = Math.floor(minutes / 60);
         hh = formatTime(hh);
@@ -305,7 +318,7 @@ return number < 10 ? '0' + number : number;
        mm = formatTime(mm);
     return `${hh}:${mm}`;};
     
-
+//converts time string "hh:mm" to minutes as integers
   function convertInMinutes (string) {
     return parseInt(string.substring(0,2))*60 + parseInt(string.substring(3,5))};
       
@@ -313,7 +326,7 @@ return number < 10 ? '0' + number : number;
 
     document.getElementById("airport").disabled = true;
     
- 
+ //MyFunction processes the bus schedule into functional  
         function MyFunction() {
 
           var now = new Date();
@@ -322,7 +335,12 @@ return number < 10 ? '0' + number : number;
   timenow = `${hours}:${minutes}`
   getTime();
 
+  //  handling the heading through a suffix 
+  // which compose the name of the array 
+  // holding the schedule in the database 
+
           if (document.getElementById('station_toggle').innerHTML == "BUS TO AIRPORT") {
+
             selectedValue = `${document.getElementById("MySelect").value}-airport`;
            document.getElementById("destination button").innerHTML = `ETA TO AIRPORT`;
     
@@ -332,7 +350,7 @@ return number < 10 ? '0' + number : number;
           }
 
 
-          // time handling
+          
 
          
 
@@ -341,21 +359,24 @@ return number < 10 ? '0' + number : number;
 
         // earliest pass
 
+//initialisation as global variables for across-program use
   var delay = busPing[selectedValue];
         selectedAttribute = jsonData[selectedValue];
         var earliestPass = null;
 let busArrivalTime = 0;
-         // top number THINK IF RIGHT
+         // stopping when the algorithm finds the earliest bus schedule that hasnt passed
          for (index = 0; index < selectedAttribute.length; index++) {
                 
           if ((timenow >= selectedAttribute[index]))
-                {continue}
+                {continue
+                  //skips the execution of the if directly to a new FOR pass
+                }
                 else {
 
                     
                     earliestPass = selectedAttribute[index];
                     busArrivalTime = convertInMinutes(earliestPass)-convertInMinutes(timenow)+convertInMinutes(delay);
-             
+             //stops when the algorithm finds the first bus pass and retains the index as a global variable
                     break;}
             };
 
@@ -405,7 +426,7 @@ let busArrivalTime = 0;
        
         
 
-       // bottom bar 
+       // bottom bar deprecated
       // if ((timenow <= selectedAttribute[selectedAttribute.length-1]) && (convertInMinutes(timenow-60) >= convertInMinutes(selectedAttribute[0]))) {
       //    document.getElementById("message").innerHTML = `minutes until your bus arrives`;
      //     document.getElementById("mesage").innerHTML = 'arrival time at your destination';
